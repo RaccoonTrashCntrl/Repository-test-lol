@@ -1,0 +1,90 @@
+//que codigo nojento pqp
+let xball = 300
+let yball = 200
+let diameter = 15
+let radium = diameter /2
+
+let xtorq = 6
+let ytorq = 6
+
+let xracket = 5
+let yracket = 150
+let racketW = 10
+let racketH = 90
+
+let xracketOP = 580
+let yracketOP = 150
+let yracketOPVEL
+
+
+
+function setup() {
+  createCanvas(600, 350);
+}
+
+function draw() {
+  background(0);
+  showBall()
+  movimentBall()
+  checkCollider()
+  showRacket(xracket, yracket)
+  movimentRacket()
+  checkColliderR()
+  checkColliderBR()
+  showRacket(xracketOP, yracketOP)
+  movimentRacketOP()
+}
+
+function showRacket(x,y){
+   rect(x, y, racketW, racketH)
+}
+
+function showBall(){
+  //desenha a bolinha
+  circle(xball, yball, diameter)
+}
+
+function movimentBall(){
+  //movimento
+  xball += xtorq
+  yball += ytorq
+}
+function checkCollider(){
+  //colisão
+    if (xball > width || xball < 0){
+  xtorq *= -1
+  }
+    if (yball > height || yball < 0){
+  ytorq *= -1
+}
+}
+function movimentRacket(){
+  if (keyIsDown(UP_ARROW)) {
+      yracket -= 10
+    }
+    
+      if (keyIsDown(DOWN_ARROW)) {
+      yracket += 10
+    }
+}
+function checkColliderR(){
+  //colisão
+    if (xracket > width || xracket < 0){
+  xracket *= -1
+  }
+    if (yracket > height || yracket < 0){
+  yracket *= -1
+    }
+}
+function checkColliderBR() {
+    if (xball - radium < xracket + racketW
+        && yball - radium < yracket + racketH
+        && yball + radium > yracket) {
+        xtorq *= -1;
+    }
+ function movimentRacketOP(){
+   yracketOPVEL = yball - yracketOP - racketW / 2 - 30;
+   yracketOP += yracketOPVEL
+ }
+
+}
